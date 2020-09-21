@@ -5,7 +5,7 @@ Artifacts for iter8's MLOps use cases, tutorials and blogs.
 
 ### [Tensorflow model creation jupyter notebook](https://github.com/iter8-tools/mlops/blob/master/tfmodelcreation.ipynb)
 
-Running this notebook requires python3 and numpy, tensorflow, and jupyter notebook packages. You can install them, and run this notebook as follows.
+Running this notebook requires python3 and the numpy, tensorflow, and jupyter notebook packages. You can create a python3 virtual environment, install the required packages, and run the notebook as follows.
 
 1. `git clone https://github.com/iter8-tools/mlops.git`
 2. `cd mlops`
