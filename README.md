@@ -32,10 +32,10 @@ For example, if you run step 1, run step 2 as `export MODEL_VERSION=2`, run step
 
 This will serve a model version locally on docker. The name and tag of the image served is set in `IMG` environment variable in step A.1 above. You can set it to other values (e.g., `user/fashion_mnist:v1`, or `user/fashion_mnist:v2` or `user/fashion_mnist:v3`) to serve different model versions.
 
-### D) Serve the baseline model version (i.e., version 1) on a kubernetes cluster with Istio
+### D) Deploy a model version on a kubernetes cluster with Istio
 This step assumes you have a kubernetes cluster accessible through `kubectl` and you have installed [Istio](https://istio.io) on this cluster.
 
 1. `kubectl apply -f baseline.yaml`
 2. `kubectl apply -f gateway.yaml`
 
-Step D.1 deploys the baseline model on your kubernetes cluster with Istio. Step D.2 exposes it outside the cluster so that it can receive prediction requests.
+Step D.1 deploys version v1 of the model on your kubernetes cluster with Istio. Step D.2 exposes it outside the cluster so that it can receive prediction requests. You can deploy other versions by changing the image within `baseline.yaml`.
