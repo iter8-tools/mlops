@@ -1,9 +1,9 @@
 # mlops
 Artifacts for iter8's MLOps use cases, tutorials and blogs.
 
-## This repo consists of the following artifacts.
+## Use the artifacts in this repo as follows.
 
-### [Tensorflow model creation jupyter notebook](https://github.com/iter8-tools/mlops/blob/master/tfmodelcreation.ipynb)
+### [Create tensorflow models in jupyter notebook](https://github.com/iter8-tools/mlops/blob/master/tfmodelcreation.ipynb)
 
 Running this notebook requires python3 and the numpy, tensorflow, and jupyter notebook packages. You can create a python3 virtual environment, install the required packages, and open the notebook as follows.
 
@@ -16,7 +16,7 @@ Running this notebook requires python3 and the numpy, tensorflow, and jupyter no
 
 Running this notebook will create three tensorflow model instances for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist) and save it under the folders `models/1`, `models/2`, and `models/3` respectively.
 
-### Packaging the tensorflow models created above as docker images
+### Package the tensorflow models created above as docker images
 1. `export IMG=<name of your docker image>`
 2. `export MODEL_NAME=fashion_mnist`
 3. `export LOCAL_MODEL_DIR=models`
