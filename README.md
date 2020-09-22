@@ -28,6 +28,6 @@ Note the relative path for the models folder and note the absence of the trailin
 For example, in step 1, if you `export IMG=my_docker_account/fashion_mnist:v2` in step 1, run steps 2 and 3, and in step 4 `export MODEL_VERSION=2` and run step 5, you would have packaged version 2 of your model as the docker image `my_docker_account/fashion_mnist:v2`.
 
 ### C) Run the docker image
-`make docker-run`
+1. `make docker-run`
 
 This will run the docker image in detached mode. Note that `IMG` environment variable is set in step A.1 above.
