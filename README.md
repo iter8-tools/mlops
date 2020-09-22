@@ -16,7 +16,7 @@ Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfmodel
 
 Running this notebook will create three tensorflow model instances for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist). The models are saved under the folders `models/1`, `models/2`, and `models/3` respectively.
 
-### Package the tensorflow models created above as docker images
+### Package the fashion_mnist tensorflow models as docker images
 1. `export IMG=<name of your docker image>`
 2. `export MODEL_NAME=fashion_mnist`
 3. `export LOCAL_MODEL_DIR=models`
