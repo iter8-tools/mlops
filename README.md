@@ -14,4 +14,20 @@ Running this notebook requires python3 and the numpy, tensorflow, and jupyter no
 5. `pip install tensorflow jupyterlab notebook`
 6. `jupyter notebook tfmodelcreation.ipynb`
 
-Running this notebook will create three tensorflow models for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist) and store it under the folders `mlops/models/1`, `mlops/models/2`, and `mlops/models/3` respectively.
+Running this notebook will create three tensorflow model instances for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist) and save it under the folders `models/1`, `models/2`, and `models/3` respectively.
+
+### Packaging the tensorflow models created above as docker images
+1. `export IMG=<name of your docker image>`
+2. `export MODEL_NAME=fashion_mnist`
+3. `export LOCAL_MODEL_DIR=models`
+4. `export MODEL_VERSION=<model version>`
+5. `make docker-build`
+
+Note the relative path for the models folder and note the absence of the trailing slash. These are required. 
+
+For example, in step 1, if you `export IMG=my_docker_account/fashion_mnist:v2` in step 1, run steps 2 and 3, and in step 4 `export MODEL_VERSION=2` and run step 5, you would have packaged version 2 of your model as the docker image `my_docker_account/fashion_mnist:v2`.
+
+### Run the docker image
+`make docker-run`
+
+This will run docker image named `IMG` in detached mode.
