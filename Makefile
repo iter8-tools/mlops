@@ -23,3 +23,8 @@ docker-build:
 docker-run:
 		$(call check_defined, IMG)
 		docker run -d --rm -p 8501:8501 $(IMG)
+
+# Deploy a model version on a kubernetes cluster with Istio
+deploy:
+		kubectl apply -f baseline.yaml
+		kubectl apply -f gateway.yaml

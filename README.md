@@ -35,7 +35,6 @@ This will serve a model version locally on docker. The name and tag of the image
 ### D) Deploy a model version on a kubernetes cluster with Istio
 This step assumes you have a kubernetes cluster accessible through `kubectl` and you have installed [Istio](https://istio.io) on this cluster.
 
-1. `kubectl apply -f baseline.yaml`
-2. `kubectl apply -f gateway.yaml`
+1. `make deploy`
 
-Step D.1 deploys version v1 of the model on your kubernetes cluster with Istio. Step D.2 exposes it outside the cluster so that it can receive prediction requests. You can deploy other versions by changing the image within `baseline.yaml`.
+This command deploys version v1 of the model on your kubernetes cluster with Istio, and subsequently exposes it outside the cluster so that it can receive prediction requests. You can deploy other versions by changing the image used within `baseline.yaml`.
