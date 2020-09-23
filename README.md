@@ -44,3 +44,15 @@ This step assumes you have a kubernetes cluster accessible through the `kubectl`
 2. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/externalize.yaml`
 
 Step E.1 deploys version v1 of the fashionmnist model in your kubernetes cluster. You can alter the image in `modelv1.yaml` to use any other model image. Step E.2 externalizes it by creating a service and exposing the service outside the cluster through Istio's ingress gateway and virtual service.
+
+### F) Deploy iter8's canary release experiment
+
+1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/experiment.yaml`
+
+The experiment is created, but it is paused until the canary deployment is available.
+
+### G) Deploy version v2 of the fashionmnist model on a kubernetes cluster with Istio
+
+1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/modelv2.yaml`
+
+E, F and G together trigger a canary release of version v2 of the fashion mnist model. After the experiment completes, you will see v2 safely rolled out and replacing v1.
