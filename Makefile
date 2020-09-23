@@ -24,7 +24,14 @@ docker-run:
 		$(call check_defined, IMG)
 		docker run -d --rm -p 8501:8501 $(IMG)
 
+# Push the docker image
+docker-push:
+		$(call check_defined, IMG)
+		docker push $(IMG)
+
 # Deploy a model version on a kubernetes cluster with Istio
-deploy:
-		kubectl apply -f baseline.yaml
-		kubectl apply -f gateway.yaml
+deploy-modelversion:
+		kubectl apply -f modelversion.yaml
+
+externalize:
+		kubectl apply -f externalize.yaml

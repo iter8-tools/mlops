@@ -32,7 +32,12 @@ For example, if you run step 1, run step 2 as `export MODEL_VERSION=2`, run step
 
 This will serve a model version locally on docker. The name and tag of the image served is set in `IMG` environment variable in step A.1 above. You can set it to other values (e.g., `user/fashion_mnist:v1`, or `user/fashion_mnist:v2` or `user/fashion_mnist:v3`) to serve different model versions.
 
-### D) Deploy a model version on a kubernetes cluster with Istio
+### D) Push the docker image to your repo
+1. `make docker-push`
+
+This will `docker push` your image. The full name and tag of the image pushed is set in `IMG` environment variable in step A.1 above. You can set it to other values (e.g., `user/fashion_mnist:v1`, or `user/fashion_mnist:v2` or `user/fashion_mnist:v3`) to push different model versions.
+
+### E) Deploy a model version on a kubernetes cluster with Istio
 This step assumes you have a kubernetes cluster accessible through `kubectl` and you have installed [Istio](https://istio.io) on this cluster.
 
 1. `make deploy`
