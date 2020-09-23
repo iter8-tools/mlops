@@ -5,14 +5,14 @@ Artifacts for iter8's MLOps use cases, tutorials and blogs.
 
 ### A) Create fashion_mnist tensorflow models from jupyter notebook
 
-Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfmodelcreation.ipynb) requires python3 with and requires the tensorflow and jupyter notebook packages. You can create a python3 virtual environment, install the required packages, and open the notebook as follows.
+Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfserving.ipynb) requires python3 with and requires the tensorflow and jupyter notebook packages. You can create a python3 virtual environment, install the required packages, and open the notebook as follows.
 
 1. `git clone git://github.com/iter8-tools/mlops.git`
 2. `cd mlops`
 3. `python3 -m venv .venv`
 4. `source .venv/bin/activate`
 5. `pip install tensorflow jupyterlab notebook`
-6. `jupyter notebook tfmodelcreation.ipynb`
+6. `jupyter notebook tfserving.ipynb`
 
 Running this notebook will create three tensorflow model instances for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist). The models are saved under the folders `models/1`, `models/2`, and `models/3` respectively.
 
