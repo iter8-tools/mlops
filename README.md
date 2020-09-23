@@ -37,7 +37,7 @@ This will serve a model version locally on docker. The name and tag of the image
 
 This will `docker push` your image. The full name and tag of the image pushed is set in `IMG` environment variable in step A.1 above. You can set it to other values (e.g., `user/fashionmnist:v1`, or `user/fashionmnist:v2` or `user/fashionmnist:v3`) to push different model versions.
 
-### E) Deploy a model version on a kubernetes cluster with Istio
+### E) Deploy version v1 of the fashionmnist model on a kubernetes cluster with Istio
 This step assumes you have a kubernetes cluster accessible through the `kubectl` command and you have installed [Istio](https://istio.io) on this cluster.
 
 1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/modelv1.yaml`
