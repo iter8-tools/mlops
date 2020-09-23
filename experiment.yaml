@@ -8,6 +8,11 @@ spec:
     baseline: fashionmnist-v1
     candidates:
       - fashionmnist-v2
+  networking:
+    hosts:
+      - name: fashionmnist.com
+        gateway: fashionmnist-gateway
+    id: fashionmnist     
   criteria:
     - metric: iter8_mean_latency
       threshold:
@@ -18,3 +23,4 @@ spec:
     interval: 15s
   trafficControl:
     maxIncrement: 20
+  cleanup: true

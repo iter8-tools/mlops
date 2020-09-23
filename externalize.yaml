@@ -32,22 +32,46 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "*"
+    - "fashionmnist.com"
 ---
 #################################################################################################### Istio virtualservice
 ##################################################################################################
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
+  labels:
+    iter8-tools/router: fashionmnist.default.svc.cluster.local
+    iter8-tools/role: stable
   name: fashionmnist
 spec:
-  hosts:
-  - "*"
   gateways:
+  - mesh
   - fashionmnist-gateway
+  hosts:
+  - fashionmnist
+  - "fashionmnist.com"
   http:
   - route:
     - destination:
         host: fashionmnist
         port:
           number: 8501
+        subset: iter8-stable
+      weight: 100
+---
+#################################################################################################### Istio destination rule
+##################################################################################################
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  labels:
+    iter8-tools/router: fashionmnist.default.svc.cluster.local
+    iter8-tools/role: stable
+  name: fashionmnist
+spec:
+  host: fashionmnist
+  subsets:
+  - labels:
+      app: fashionmnist
+      version: v1
+    name: iter8-stable
