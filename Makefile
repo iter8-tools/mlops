@@ -28,10 +28,3 @@ docker-run:
 docker-push:
 		$(call check_defined, IMG)
 		docker push $(IMG)
-
-# Deploy a model version on a kubernetes cluster with Istio
-deploy-modelversion:
-		kubectl apply -f modelversion.yaml
-
-externalize:
-		kubectl apply -f externalize.yaml

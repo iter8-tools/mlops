@@ -1,6 +1,6 @@
 ###################################################################################################
 # This file defines a kubernetes service for fashionmnist model and externalizes the service
-# using an Istio gateway
+# using an Istio gateway, and a virtual service
 #################################################################################################### fashionmnist service
 ##################################################################################################
 apiVersion: v1
@@ -17,6 +17,8 @@ spec:
   selector:
     app: fashionmnist
 ---
+#################################################################################################### Istio gateway
+##################################################################################################
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
@@ -31,4 +33,21 @@ spec:
       protocol: HTTP
     hosts:
     - "*"
----    
+---
+#################################################################################################### Istio virtualservice
+##################################################################################################
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: fashionmnist
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - fashionmnist-gateway
+  http:
+  - route:
+    - destination:
+        host: fashionmnist
+        port:
+          number: 8501

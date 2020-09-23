@@ -1,0 +1,30 @@
+##################################################################################################
+# This file defines the deployment for a single version of the fashion_mnist model
+##################################################################################################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fashionmnist-v1
+  labels:
+    app: fashionmnist
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fashionmnist
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: fashionmnist
+        version: v1
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: fashionmnist
+        image: docker.io/iter8/fashionmnist:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8501
