@@ -1,5 +1,5 @@
 ##################################################################################################
-# This file defines the deployment for the fashion_mnist model version v2
+# This file defines the deployment for the fashionmnist model version v2
 ##################################################################################################
 apiVersion: apps/v1
 kind: Deployment
