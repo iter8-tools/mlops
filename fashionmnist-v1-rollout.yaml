@@ -1,23 +1,23 @@
 apiVersion: iter8.tools/v1alpha2
 kind: Experiment
 metadata:
-  name: fashionmnist-v2-rollout
+  name: fashionmnist-v1-rollout
 spec:
   service:
     name: fashionmnist
-    baseline: fashionmnist-v1
+    baseline: fashionmnist-v3
     candidates:
-      - fashionmnist-v2
+      - fashionmnist-v1
   networking:
     hosts:
       - name: fashionmnist.com
         gateway: fashionmnist-gateway
-    id: fashionmnist     
+    id: fashionmnist.iter8router    
   criteria:
     - metric: iter8_mean_latency
       threshold:
         type: absolute
-        value: 2000
+        value: 100
   duration:
     maxIterations: 8
     interval: 15s

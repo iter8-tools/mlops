@@ -45,14 +45,20 @@ This step assumes you have a kubernetes cluster accessible through the `kubectl`
 
 Step E.1 deploys version v1 of the fashionmnist model in your kubernetes cluster. You can alter the image in `modelv1.yaml` to use any other model image. Step E.2 externalizes it by creating a service and exposing the service outside the cluster through Istio's ingress gateway and virtual service.
 
-### F) Deploy iter8's canary release experiment
+### F) Send traffic to the model
 
-1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/experiment.yaml`
+Make sure you are running the jupyter notebook by following steps A.1 through A.6. Execute the first two cells which import appropriate python packages and and the image datasets. Execute the cell below the header `Send Serialized Images for Classification to the Model Service`. This will send a steady stream of traffic to the model service. For this to work, you need ensure you set the `gateway_url` variable in this cell correctly. It is currently intended to work for minikube environments. If your kubernetes environment is not minikube, follow the instructions in that cell to make sure `gateway_url` is set correctly.
+
+### G) Deploy iter8's canary release experiment
+
+1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/fashionmnist-v2-rollout.yaml`
 
 The experiment is created, but it is paused until the canary deployment is available.
 
-### G) Deploy version v2 of the fashionmnist model on a kubernetes cluster with Istio
+### H) Deploy version v2 of the fashionmnist model on a kubernetes cluster with Istio
 
 1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/modelv2.yaml`
 
-E, F and G together trigger a canary release of version v2 of the fashion mnist model. After the experiment completes, you will see v2 safely rolled out and replacing v1.
+E, G, and H together trigger a canary release of version v2 of the fashion mnist model, and F ensures that there is application traffic to the model versions; without application traffic, there will no metrics computed for either of the versions, which can force iter8 to retain version v1 instead of rolling out v2.
+
+After the experiment completes, you will see v2 safely rolled out and replacing v1.
