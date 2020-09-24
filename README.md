@@ -5,7 +5,7 @@ Artifacts for iter8's MLOps use cases, tutorials and blogs.
 
 ### A) Create fashionmnist tensorflow models from jupyter notebook
 
-Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfserving.ipynb) requires python3 with and requires the tensorflow and jupyter notebook packages. You can create a python3 virtual environment, install the required packages, and open the notebook as follows.
+Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfserving.ipynb) requires python3 and tensorflow and jupyter notebook packages. You can create a python3 virtual environment, install the required packages, and open the notebook as follows.
 
 1. `git clone git://github.com/iter8-tools/mlops.git`
 2. `cd mlops`
@@ -14,7 +14,7 @@ Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfservi
 5. `pip install tensorflow jupyterlab notebook`
 6. `jupyter notebook tfserving.ipynb`
 
-Running this notebook will create three tensorflow model instances for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist). The models are saved under the folders `models/1`, `models/2`, and `models/3` respectively.
+Running the first part of this notebook will create three tensorflow model instances for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist). The models are saved under the folders `models/1`, `models/2`, and `models/3` respectively.
 
 ### B) Package the fashionmnist tensorflow models as docker images
 1. `export MODEL_NAME=fashionmnist`
@@ -30,12 +30,12 @@ For example, if you run step 1, run step 2 as `export MODEL_VERSION=2`, run step
 ### C) Serve a model version locally on docker
 1. `make docker-run`
 
-This will serve a model version locally on docker. The name and tag of the image served is set in `IMG` environment variable in step A.1 above. You can set it to other values (e.g., `user/fashionmnist:v1`, or `user/fashionmnist:v2` or `user/fashionmnist:v3`) to serve different model versions.
+This will serve a model version locally on docker. The name and tag of the image served is set in `IMG` environment variable in step B.4 above. You can set it to other values (e.g., `user/fashionmnist:v1`, or `user/fashionmnist:v2` or `user/fashionmnist:v3`) to serve different model versions.
 
 ### D) Push the docker image to your repo
 1. `make docker-push`
 
-This will `docker push` your image. The full name and tag of the image pushed is set in `IMG` environment variable in step A.1 above. You can set it to other values (e.g., `user/fashionmnist:v1`, or `user/fashionmnist:v2` or `user/fashionmnist:v3`) to push different model versions.
+This will `docker push` your image. The full name and tag of the image pushed is set in `IMG` environment variable in step B.4 above. You can set it to other values (e.g., `user/fashionmnist:v1`, or `user/fashionmnist:v2` or `user/fashionmnist:v3`) to push different model versions.
 
 ### E) Deploy version v1 of the fashionmnist model on a kubernetes cluster with Istio
 This step assumes you have a kubernetes cluster accessible through the `kubectl` command and you have installed [Istio](https://istio.io) on this cluster.
@@ -59,6 +59,6 @@ The experiment is created, but it is paused until the canary deployment is avail
 
 1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/modelv2.yaml`
 
-E, G, and H together trigger a canary release of version v2 of the fashion mnist model, and F ensures that there is application traffic to the model versions; without application traffic, there will no metrics computed for either of the versions, which can force iter8 to retain version v1 instead of rolling out v2.
+E, G, and H together trigger a canary release of version v2 of the fashion mnist model, and F ensures that there is application traffic to the model versions; without application traffic, metrics will not be available for either of the two versions, which can force iter8 to retain version v1 instead of rolling out v2.
 
-After the experiment completes, you will see v2 safely rolled out and replacing v1.
+After the experiment completes, you should see v2 safely rolled out and replacing v1.
