@@ -40,8 +40,9 @@ This will `docker push` your image. The full name and tag of the image pushed is
 ### E) Deploy version v1 of the fashionmnist model on a kubernetes cluster with Istio
 This step assumes you have a kubernetes cluster accessible through the `kubectl` command and you have installed [Istio](https://istio.io) on this cluster.
 
-1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/modelv1.yaml`
-2. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/externalize.yaml`
+1. `kubectl label namespace default istio-injection=enabled`
+2. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/modelv1.yaml`
+3. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/externalize.yaml`
 
 Step E.1 deploys version v1 of the fashionmnist model in your kubernetes cluster. You can alter the image in `modelv1.yaml` to use any other model image. Step E.2 externalizes it by creating a service and exposing the service outside the cluster through Istio's ingress gateway and virtual service.
 
