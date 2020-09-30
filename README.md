@@ -11,7 +11,7 @@ Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfservi
 2. `cd mlops`
 3. `python3 -m venv .venv`
 4. `source .venv/bin/activate`
-5. `pip install tensorflow jupyterlab notebook`
+5. `pip install tensorflow jupyterlab notebook matplotlib requests`
 6. `jupyter notebook tfserving.ipynb`
 
 Running the first part of this notebook will create three tensorflow model instances for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist). The models are saved under the folders `models/1`, `models/2`, and `models/3` respectively.
