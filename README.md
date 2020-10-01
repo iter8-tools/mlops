@@ -61,4 +61,4 @@ The experiment is created, but it is paused until the canary deployment is avail
 
 E, G, and H together trigger a canary release of Version v2 of the fashion mnist model, and F ensures that there is application traffic to the model versions; without application traffic, metrics will not be available for either of the two versions, which can force iter8 to retain Version v1 instead of rolling out v2.
 
-After the experiment completes, you should see v2 safely rolled out and replacing v1.
+After the experiment completes, you should see Version v2 safely rolled out and replacing Version v1.
