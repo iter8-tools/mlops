@@ -1,11 +1,10 @@
-# mlops
-Artifacts for iter8's MLOps use cases, tutorials and blogs.
+# Artifacts for iter8's MLOps use cases, tutorials and blogs.
 
 ## Use the artifacts in this repo as follows.
 
-### A) Create fashionmnist tensorflow models from jupyter notebook
+### A) Create Fashion MNIST TensorFlow models from Jupyter notebook
 
-Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfserving.ipynb) requires python3 and tensorflow and jupyter notebook packages. You can create a python3 virtual environment, install the required packages, and open the notebook as follows.
+Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfserving.ipynb) requires Python3 and TensorFlow and Jupyter notebook packages. You can create a Python3 virtual environment, install the required packages, and open the notebook as follows.
 
 1. `git clone git://github.com/iter8-tools/mlops.git`
 2. `cd mlops`
@@ -14,9 +13,9 @@ Running [this notebook](https://github.com/iter8-tools/mlops/blob/master/tfservi
 5. `pip install tensorflow jupyterlab notebook matplotlib requests`
 6. `jupyter notebook tfserving.ipynb`
 
-Running the first part of this notebook will create three tensorflow model instances for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist). The models are saved under the folders `models/1`, `models/2`, and `models/3` respectively.
+Running the first part of this notebook will create three TensorFlow model instances for [the fashion mnist dataset](https://www.kaggle.com/zalando-research/fashionmnist). The models are saved under the folders `models/1`, `models/2`, and `models/3` respectively.
 
-### B) Package the fashionmnist tensorflow models as docker images
+### B) Package the Fashion MNIST TensorFlow models as docker images
 1. `export MODEL_NAME=fashionmnist`
 2. `export MODEL_VERSION=<model version>`
 3. `export LOCAL_MODEL_DIR=models`
@@ -37,18 +36,18 @@ This will serve a model version locally on docker. The name and tag of the image
 
 This will `docker push` your image. The full name and tag of the image pushed is set in `IMG` environment variable in step B.4 above. You can set it to other values (e.g., `user/fashionmnist:v1`, or `user/fashionmnist:v2` or `user/fashionmnist:v3`) to push different model versions.
 
-### E) Deploy version v1 of the fashionmnist model on a kubernetes cluster with Istio
-This step assumes you have a kubernetes cluster accessible through the `kubectl` command and you have installed [Istio](https://istio.io) on this cluster.
+### E) Deploy version v1 of the Fashion MNIST model on a Kubernetes cluster with Istio
+This step assumes you have a Kubernetes cluster accessible through the `kubectl` command and you have installed [Istio](https://istio.io) on this cluster.
 
 1. `kubectl label namespace default istio-injection=enabled`
 2. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/modelv1.yaml`
 3. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/externalize.yaml`
 
-Step E.1 deploys version v1 of the fashionmnist model in your kubernetes cluster. You can alter the image in `modelv1.yaml` to use any other model image. Step E.2 externalizes it by creating a service and exposing the service outside the cluster through Istio's ingress gateway and virtual service.
+Step E.1 deploys version v1 of the Fashion MNIST model in your Kubernetes cluster. You can alter the image in `modelv1.yaml` to use any other model image. Step E.2 externalizes it by creating a service and exposing the service outside the cluster through Istio's ingress gateway and virtual service.
 
 ### F) Send traffic to the model
 
-Make sure you are running the jupyter notebook by following steps A.1 through A.6. Execute the first two cells which import appropriate python packages and and the image datasets. Execute the cell below the header `Send Serialized Images for Classification to the Model Service`. This will send a steady stream of traffic to the model service. For this to work, you need ensure you set the `gateway_url` variable in this cell correctly. It is currently intended to work for minikube environments. If your kubernetes environment is not minikube, follow the instructions in that cell to make sure `gateway_url` is set correctly.
+Make sure you are running the Jupyter notebook by following steps A.1 through A.6. Execute the first two cells which import appropriate Python packages and and the image datasets. Execute the cell below the header `Send Serialized Images for Classification to the Model Service`. This will send a steady stream of traffic to the model service. For this to work, you need ensure you set the `gateway_url` variable in this cell correctly. It is currently intended to work for Minikube environments. If your Kubernetes environment is different from Minikube, follow the instructions in that cell to make sure `gateway_url` is set correctly.
 
 ### G) Deploy iter8's canary release experiment
 
@@ -56,7 +55,7 @@ Make sure you are running the jupyter notebook by following steps A.1 through A.
 
 The experiment is created, but it is paused until the canary deployment is available.
 
-### H) Deploy version v2 of the fashionmnist model on a kubernetes cluster with Istio
+### H) Deploy version v2 of the Fashion MNIST model on a Kubernetes cluster with Istio
 
 1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/modelv2.yaml`
 
