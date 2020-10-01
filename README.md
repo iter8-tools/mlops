@@ -24,7 +24,7 @@ Running the first part of this notebook will create three TensorFlow model insta
 
 Note the relative path for the models folder and note the absence of the trailing slash. These are required. 
 
-For example, if you run step 1, run step 2 as `export MODEL_VERSION=2`, run step 3, run step 4 as `export IMG=user/fashionmnist:v$MODEL_VERSION` and run step 5, you would have packaged version 2 of your model as the docker image `user/fashionmnist:v2`.
+For example, if you run step 1, run step 2 as `export MODEL_VERSION=2`, run step 3, run step 4 as `export IMG=user/fashionmnist:v$MODEL_VERSION` and run step 5, you would have packaged Version 2 of your model as the docker image `user/fashionmnist:v2`.
 
 ### C) Serve a model version locally on docker
 1. `make docker-run`
@@ -47,7 +47,7 @@ Step E.1 deploys version v1 of the Fashion MNIST model in your Kubernetes cluste
 
 ### F) Send traffic to the model
 
-Make sure you are running the Jupyter notebook by following steps A.1 through A.6. Execute the first two cells which import appropriate Python packages and and the image datasets. Execute the cell below the header `Send Serialized Images for Classification to the Model Service`. This will send a steady stream of traffic to the model service. For this to work, you need ensure you set the `gateway_url` variable in this cell correctly. It is currently intended to work for Minikube environments. If your Kubernetes environment is different from Minikube, follow the instructions in that cell to make sure `gateway_url` is set correctly.
+Make sure you are running the Jupyter notebook by following steps A.1 through A.6. Execute the first two cells which import appropriate Python packages and and the image datasets. Execute the cell below the header `Send serialized images for classification to the model service`. This will send a steady stream of traffic to the model service. For this to work, you need ensure you set the `gateway_url` variable in this cell correctly. It is currently intended to work for Minikube environments. If your Kubernetes environment is different from Minikube, follow the instructions in that cell to make sure `gateway_url` is set correctly.
 
 ### G) Deploy iter8's canary release experiment
 
@@ -55,10 +55,10 @@ Make sure you are running the Jupyter notebook by following steps A.1 through A.
 
 The experiment is created, but it is paused until the canary deployment is available.
 
-### H) Deploy version v2 of the Fashion MNIST model on a Kubernetes cluster with Istio
+### H) Deploy Version v2 of the Fashion MNIST model on a Kubernetes cluster with Istio
 
 1. `kubectl apply -f https://raw.githubusercontent.com/iter8-tools/mlops/master/modelv2.yaml`
 
-E, G, and H together trigger a canary release of version v2 of the fashion mnist model, and F ensures that there is application traffic to the model versions; without application traffic, metrics will not be available for either of the two versions, which can force iter8 to retain version v1 instead of rolling out v2.
+E, G, and H together trigger a canary release of Version v2 of the fashion mnist model, and F ensures that there is application traffic to the model versions; without application traffic, metrics will not be available for either of the two versions, which can force iter8 to retain Version v1 instead of rolling out v2.
 
 After the experiment completes, you should see v2 safely rolled out and replacing v1.
