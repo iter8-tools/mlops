@@ -19,8 +19,8 @@ spec:
         type: absolute
         value: 100
   duration:
-    maxIterations: 8
+    maxIterations: 20
     interval: 15s
   trafficControl:
-    maxIncrement: 20
+    maxIncrement: 10
   cleanup: true
